@@ -1,0 +1,56 @@
+body {
+    background-color: #f8f9fa;
+
+}
+
+.inverted {
+    filter: invert(100%)
+}
+
+.footer {
+    text-align: center !important;
+    color: white;
+    font-size: 15px
+}
+
+.featurette-divider {
+    margin: 5rem 0;
+}
+
+.hr {
+    margin-top: 10rem;
+    margin-bottom: 6rem;
+    /* margin: 6rem 0; */
+    border: 0;
+    border-top: 1.5px solid #eee;
+    text-align: center;
+    height: 0px;
+    line-height: 0px;
+    font-size: 30px;
+}
+
+.hr-title {
+    background-color: #f8f9fa;
+}
+
+.middle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+    text-align: left;
+}
