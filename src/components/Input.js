@@ -7,6 +7,7 @@ class Input extends Component {
     state = {
         inputValue: '',
         selectedCountry: [],
+        selectedCountryCode: '',
         inputSize: 0
     }
 
@@ -18,12 +19,14 @@ class Input extends Component {
 
     handleSelectCountry = event => {
         let inputValue = event.target.value
+        let selectedCountryCode = event.target.id
 
         this.setState({
-            inputValue
+            inputValue, 
+            selectedCountryCode
         })
 
-        this.props.onHandleInputValue(inputValue)
+        this.props.onHandleInputValue(inputValue, selectedCountryCode)
     }
 
     componentDidUpdate(previousProps, previousState) {
@@ -60,6 +63,7 @@ class Input extends Component {
         let searchCountry = selectedCountry.map(item => (
             <SearchCountry
                 key={item.id}
+                id={item.code}
                 name={item.name}
             />
         ))
