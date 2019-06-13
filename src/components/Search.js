@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
+import Input from './Input'
 
 class Search extends Component {
-    state = {}
+
+    state = {
+        selectedCountry: '',
+    }
+
+    handleInputValue = inputValue => {
+        this.setState({
+            selectedCountry: inputValue
+        })
+    }
+
+
     render() {
         return (
 
@@ -15,11 +27,7 @@ class Search extends Component {
                 <div className="row justify-content-md-center">
                     <div className="col-5">
 
-                        <input
-                            class="form-control form-control-lg mt-3"
-                            type="text"
-                            placeholder="enter the name of the country"
-                        />
+                        <Input onHandleInputValue={this.handleInputValue} />
 
                     </div>
 
