@@ -1,16 +1,25 @@
 body {
     background-color: #f8f9fa;
-
 }
+
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
 
 .inverted {
     filter: invert(100%)
 }
 
-.footer {
-    text-align: center !important;
+footer {
+    text-align: center;
     color: white;
-    font-size: 15px
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .featurette-divider {
@@ -54,3 +63,10 @@ p {
     font-weight: 300;
     text-align: left;
 }
+
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+    margin-top: 0;
+  }

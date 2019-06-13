@@ -5,7 +5,12 @@ const Footer = () => {
 
         <footer class="navbar navbar-dark bg-primary mt-5">
             <div className="container">
-                <span className="footer">© 2019 Copyright Air quality</span>
+                <div className="row">
+                    <div class="col">
+                        <span>© 2019 Copyright by Air quality</span>
+                    </div>
+                </div>
+
             </div>
         </footer>
 
