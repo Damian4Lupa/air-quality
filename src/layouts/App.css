@@ -22,6 +22,12 @@ footer {
     align-items: center;
 }
 
+.center {
+    margin-bottom: 5px;
+    justify-content: center;
+    align-items: center; 
+}
+
 .featurette-divider {
     margin: 5rem 0;
 }

@@ -7,8 +7,11 @@ class Search extends Component {
         selectedCountry: '',
         selectedCountryCode: '',
         informationAboutPollution: [],
+        cityPollutionArray: [],
 
         show_informationAboutPollution: false,
+        show_LoadingDataButton: false,
+        show_searchButton: true,
         dataComplite: false,
 
     }
@@ -18,6 +21,29 @@ class Search extends Component {
             selectedCountry: inputValue,
             selectedCountryCode
         })
+    }
+
+    changeButtonStatus = () => {
+        this.setState({
+            show_LoadingDataButton: false,
+            show_searchButton: true,
+        })
+    }
+
+    resetState = () => {
+        this.setState({
+            selectedCountry: '',
+            selectedCountryCode: '',
+            informationAboutPollution: [],
+            cityPollutionArray: [],
+
+            show_informationAboutPollution: false,
+            show_LoadingDataButton: false,
+            show_searchButton: true,
+            dataComplite: false,
+        })
+
+
     }
 
     downloadInformationAboutPollution = () => {
@@ -44,14 +70,73 @@ class Search extends Component {
 
                 this.setState({
                     informationAboutPollution,
-                    dataComplite: true
+                    dataComplite: true,
+                    show_LoadingDataButton: true,
+                    show_searchButton: false,
                 })
             })
 
         setTimeout(() => {
-            this.topPollution()
-        }, 1000)
+            this.changeButtonStatus()
+        }, 2000)
     }
+
+    componentDidUpdate(previousProps, previousState) {
+
+        if (previousState.selectedCountry !== '' && this.state.selectedCountry === '') {
+            this.resetState()
+        }
+
+        let data = this.state.informationAboutPollution
+
+        let informationAboutPollution = [...data]
+        let topCityPollutionList = []
+        let cityPollutionArray = []
+
+        if (informationAboutPollution) {
+            topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "so2").sort(function (a, b) {
+                return b.value - a.value;
+            }).slice(0, 10).map(item => item.city)
+        } else if (topCityPollutionList === []) {
+            topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "co").sort(function (a, b) {
+                return b.value - a.value;
+            }).slice(0, 10).map(item => item.city)
+        }
+
+        // if (topCityPollutionList) {
+
+        // }
+
+        // let topCityPollutionSo2 = informationAboutPollution.filter(item => item.parameter === "so2").sort(function (a, b) {
+        //     return b.value - a.value;
+        // }).slice(0, 30).map(item => item.city)
+
+        // let intersection = topCityPollutionSo2.filter(x => topCityPollutionSo2.includes(x)).slice(0, 10)
+
+        for (let i = 0; i < 10; i++) {
+            let result = informationAboutPollution.filter(item => item.city === topCityPollutionList[i])
+            cityPollutionArray.push(result)
+        }
+
+        setTimeout(() => {
+            if (this.state.cityPollutionArray.length === 0) {
+                this.setState({
+                    cityPollutionArray
+                })
+            }
+        }, 1000)
+
+
+
+
+
+        console.log("przekazano 100", informationAboutPollution)
+        console.log("top city", topCityPollutionList)
+        console.log("wynik końcowy", cityPollutionArray)
+
+    }
+
+
 
     topPollution = () => {
 
@@ -90,12 +175,14 @@ class Search extends Component {
 
     render() {
 
-        const { informationAboutPollution, dataComplite } = this.state
+        const { informationAboutPollution, dataComplite, show_LoadingDataButton, show_searchButton } = this.state
 
         let downloadError = false
+
         if (informationAboutPollution.length === 0 && dataComplite) {
             downloadError = true
         }
+
 
         return (
 
@@ -114,15 +201,26 @@ class Search extends Component {
                     </div>
 
 
-
                     <div className="col-5">
 
-                        <button
+
+                        {show_searchButton && <button
                             type="button"
-                            class="btn btn-outline-primary btn-lg btn-block mt-3"
+                            className="btn btn-outline-primary btn-lg btn-block mt-3"
                             onClick={this.downloadInformationAboutPollution}
                         >Search
-                            </button>
+                        </button>}
+
+
+
+                        {show_LoadingDataButton && <button class="btn btn-outline-primary btn-lg btn-block mt-3" type="button" disabled>
+                            <span className="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>
+                            <span> Loading data...</span>
+
+                        </button>}
+
+
+
                     </div>
                 </div>
 

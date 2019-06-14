@@ -14,8 +14,6 @@ const Navbar = () => {
                         alt="logo"
                     />
                     <span className="ml-2">Air quality</span>
-                   
-                    
             </a>
             </div>
         </nav>

@@ -12,9 +12,12 @@ class Input extends Component {
     }
 
     handleChangeInput = event => {
+        let inputValue = event.target.value.toUpperCase()
+
         this.setState({
-            inputValue: event.target.value.toUpperCase()
+            inputValue
         })
+        this.props.onHandleInputValue(inputValue)
     }
 
     handleSelectCountry = event => {
@@ -22,7 +25,7 @@ class Input extends Component {
         let selectedCountryCode = event.target.id
 
         this.setState({
-            inputValue, 
+            inputValue,
             selectedCountryCode
         })
 
@@ -52,6 +55,16 @@ class Input extends Component {
             // console.log(selectedCountry, inputSize)
         }
 
+        if (previousState.inputValue.length > 1 && this.state.inputValue === '') {
+            this.setState({
+                inputValue: '',
+                selectedCountry: [],
+                selectedCountryCode: '',
+                inputSize: 0
+            })
+
+        }
+
 
     }
 
@@ -72,7 +85,7 @@ class Input extends Component {
 
         if (selectedCountry.length >= 1) {
             showSelect = true
-        } if (inputValue === '' ) {
+        } if (inputValue === '') {
             showSelect = false
         }
 
@@ -80,7 +93,7 @@ class Input extends Component {
         return (
             <>
                 <input
-                    class="form-control form-control-lg mt-3 text-center"
+                    className="form-control form-control-lg mt-3 text-center"
                     type="text"
                     placeholder="enter the name of the country"
                     value={inputValue}
