@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from './Input'
+import ListOfTheCityPollution from './ListOfTheCityPollution'
 
 class Search extends Component {
 
@@ -8,11 +9,52 @@ class Search extends Component {
         selectedCountryCode: '',
         informationAboutPollution: [],
         cityPollutionArray: [],
+        topCityPollutionList: [],
 
-        show_informationAboutPollution: false,
+        show_listOfTheCityPollution: true,
         show_LoadingDataButton: false,
         show_searchButton: true,
-        dataComplite: false,
+        buttonClicked: false,
+        downloadedData: false,
+        dataPollutionReady: false,
+        dataCityReady: false
+
+    }
+
+    componentDidUpdate(previousProps, previousState) {
+
+        const { informationAboutPollution, dataPollutionReady, downloadedData } = this.state
+
+        if (previousState.selectedCountry !== '' && this.state.selectedCountry === '') {
+            this.resetState()
+        }
+
+        if (informationAboutPollution.length > 1) {
+            this.createCityPollutionArray()
+        }
+
+        if (downloadedData && dataPollutionReady) {
+            setTimeout(() => {
+                console.log("show_listOfTheCityPollution")
+                this.setState({
+                    show_listOfTheCityPollution: true
+                })
+            }, 100)
+        }
+
+        //przekazanie wartości do dziecka
+        if (dataPollutionReady) {
+
+            setTimeout(() => {
+                this.changeButtonStatus2()
+                this.setState({
+                    dataPollutionReady: false,
+                    buttonClicked: false,
+                })
+            }, 100)
+
+        }
+
 
     }
 
@@ -25,8 +67,21 @@ class Search extends Component {
 
     changeButtonStatus = () => {
         this.setState({
+            show_LoadingDataButton: true,
+            show_searchButton: false,
+        })
+    }
+
+    changeButtonStatus2 = () => {
+        this.setState({
             show_LoadingDataButton: false,
             show_searchButton: true,
+        })
+    }
+
+    buttonClicked = () => {
+        this.setState({
+            buttonClicked: true
         })
     }
 
@@ -40,10 +95,9 @@ class Search extends Component {
             show_informationAboutPollution: false,
             show_LoadingDataButton: false,
             show_searchButton: true,
-            dataComplite: false,
+            buttonClicked: false,
+            downloadedData: false,
         })
-
-
     }
 
     downloadInformationAboutPollution = () => {
@@ -56,36 +110,29 @@ class Search extends Component {
             .then(response => {
 
                 if (response.ok) {
-
+                    // console.log(`kod odpowiedzi z serwera ${response.status}`)
                     return response
                 }
                 throw Error(response.status)
-
             })
-            .catch(error => alert(`\nEasy, it's just a error \n${error} \nRefresh the page `))
+            .catch(error => alert(`\nEasy, it's just a error \nError number ${error} \nRefresh the page `))
             .then(response => response.json())
             .then(data => {
 
                 let informationAboutPollution = data.results
 
-                this.setState({
-                    informationAboutPollution,
-                    dataComplite: true,
-                    show_LoadingDataButton: true,
-                    show_searchButton: false,
-                })
-            })
+                // console.log("fetch", informationAboutPollution)
 
-        setTimeout(() => {
-            this.changeButtonStatus()
-        }, 2000)
+                if (informationAboutPollution.length > 1) {
+                    this.setState({
+                        informationAboutPollution,
+                        downloadedData: true
+                    })
+                }
+            })
     }
 
-    componentDidUpdate(previousProps, previousState) {
-
-        if (previousState.selectedCountry !== '' && this.state.selectedCountry === '') {
-            this.resetState()
-        }
+    createCityPollutionArray = () => {
 
         let data = this.state.informationAboutPollution
 
@@ -103,16 +150,6 @@ class Search extends Component {
             }).slice(0, 10).map(item => item.city)
         }
 
-        // if (topCityPollutionList) {
-
-        // }
-
-        // let topCityPollutionSo2 = informationAboutPollution.filter(item => item.parameter === "so2").sort(function (a, b) {
-        //     return b.value - a.value;
-        // }).slice(0, 30).map(item => item.city)
-
-        // let intersection = topCityPollutionSo2.filter(x => topCityPollutionSo2.includes(x)).slice(0, 10)
-
         for (let i = 0; i < 10; i++) {
             let result = informationAboutPollution.filter(item => item.city === topCityPollutionList[i])
             cityPollutionArray.push(result)
@@ -121,65 +158,55 @@ class Search extends Component {
         setTimeout(() => {
             if (this.state.cityPollutionArray.length === 0) {
                 this.setState({
-                    cityPollutionArray
+                    cityPollutionArray,
+                    topCityPollutionList,
+                    dataPollutionReady: true
                 })
             }
-        }, 1000)
+        }, 2000)
 
-
-
-
-
-        console.log("przekazano 100", informationAboutPollution)
-        console.log("top city", topCityPollutionList)
+        // console.log("przekazano 100", informationAboutPollution)
+        // console.log("top city", topCityPollutionList)
         console.log("wynik końcowy", cityPollutionArray)
 
     }
 
+    downloadInformationAboutCity = () => {
+
+        let data = this.state.topCityPollutionList
+
+        let topCityPollutionList = [...data]
 
 
-    topPollution = () => {
-
-        let data = this.state.informationAboutPollution
-
-        let informationAboutPollution = [...data]
-
-        let topCityPollutionSo2 = informationAboutPollution.filter(item => item.parameter === "so2").sort(function (a, b) {
-            return b.value - a.value;
-        }).slice(0, 30).map(item => item.city)
-
-
-        // let topCityPollutionNo2 = informationAboutPollution.filter(item => item.parameter === "no2").sort(function (a, b) {
-        //     return b.value - a.value;
-        // }).slice(0, 15).map(item => item.city)
-
-        // let topCityPollution = topCityPollutionSo2.filter(item => topCityPollutionNo2.includes(item))
-
-        // let topCityPollution = topCityPollutionSo2.filter(value => -1 !== topCityPollutionNo2.indexOf(value))
-
-        // let topCityPollution = topCityPollutionSo2.filter(x => topCityPollutionNo2.indexOf(x) > -1)
-
-        let intersection = topCityPollutionSo2.filter(x => topCityPollutionSo2.includes(x)).slice(0, 10)
-
-
-
-
-        console.log(informationAboutPollution)
-        // console.log(intersection)
 
     }
 
+    handleButton = () => {
 
+        console.log("wciśnięto button")
 
+        this.buttonClicked()
+
+        this.changeButtonStatus()
+
+        // setTimeout(() => {
+        //     this.changeButtonStatus2()
+        // }, 2000)
+
+        this.downloadInformationAboutPollution()
+
+        // setTimeout(() => {
+        //     this.createCityPollutionArray()
+        // }, 2000)
+    }
 
 
     render() {
 
-        const { informationAboutPollution, dataComplite, show_LoadingDataButton, show_searchButton } = this.state
+        const { show_LoadingDataButton, show_searchButton, informationAboutPollution, buttonClicked, show_listOfTheCityPollution, cityPollutionArray } = this.state
 
         let downloadError = false
-
-        if (informationAboutPollution.length === 0 && dataComplite) {
+        if (buttonClicked && informationAboutPollution === []) {
             downloadError = true
         }
 
@@ -207,7 +234,7 @@ class Search extends Component {
                         {show_searchButton && <button
                             type="button"
                             className="btn btn-outline-primary btn-lg btn-block mt-3"
-                            onClick={this.downloadInformationAboutPollution}
+                            onClick={this.handleButton}
                         >Search
                         </button>}
 
@@ -226,9 +253,13 @@ class Search extends Component {
 
                 <div className="row justify-content-around">
 
-
                     {downloadError && <h5 className="mt-5">We have a server problem, we could not get the value, please try again</h5>}
 
+                </div>
+
+                <div className="row mbottom">
+
+                    {show_listOfTheCityPollution && <ListOfTheCityPollution data={this.state.cityPollutionArray} />}
 
                 </div>
 
