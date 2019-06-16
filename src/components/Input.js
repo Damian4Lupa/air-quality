@@ -11,13 +11,21 @@ class Input extends Component {
         inputSize: 0
     }
 
+
+    componentDidMount() {
+        let data = localStorage.getItem('InputValue')
+        this.setState({
+            inputValue: data
+        })
+    }
+
     handleChangeInput = event => {
+
         let inputValue = event.target.value.toUpperCase()
 
         this.setState({
             inputValue
         })
-        this.props.onHandleInputValue(inputValue)
     }
 
     handleSelectCountry = event => {
@@ -51,8 +59,6 @@ class Input extends Component {
                 selectedCountry,
                 inputSize
             })
-
-            // console.log(selectedCountry, inputSize)
         }
 
         if (previousState.inputValue.length > 1 && this.state.inputValue === '') {
@@ -62,10 +68,7 @@ class Input extends Component {
                 selectedCountryCode: '',
                 inputSize: 0
             })
-
         }
-
-
     }
 
 

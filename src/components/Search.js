@@ -11,7 +11,7 @@ class Search extends Component {
         cityPollutionArray: [],
         topCityPollutionList: [],
 
-        show_listOfTheCityPollution: true,
+        show_listOfTheCityPollution: false,
         show_LoadingDataButton: false,
         show_searchButton: true,
         buttonClicked: false,
@@ -21,9 +21,20 @@ class Search extends Component {
 
     }
 
+    componentDidMount() {
+
+        let InputValue = localStorage.getItem('InputValue')
+        let selectedCountryCode = localStorage.getItem('selectedCountryCode')
+
+        this.setState({
+            selectedCountry: InputValue,
+            selectedCountryCode
+        })
+    }
+
     componentDidUpdate(previousProps, previousState) {
 
-        const { informationAboutPollution, dataPollutionReady, downloadedData } = this.state
+        const { informationAboutPollution, dataPollutionReady, downloadedData, selectedCountry } = this.state
 
         if (previousState.selectedCountry !== '' && this.state.selectedCountry === '') {
             this.resetState()
@@ -35,14 +46,13 @@ class Search extends Component {
 
         if (downloadedData && dataPollutionReady) {
             setTimeout(() => {
-                console.log("show_listOfTheCityPollution")
+
                 this.setState({
                     show_listOfTheCityPollution: true
                 })
             }, 100)
         }
 
-        //przekazanie wartości do dziecka
         if (dataPollutionReady) {
 
             setTimeout(() => {
@@ -52,17 +62,19 @@ class Search extends Component {
                     buttonClicked: false,
                 })
             }, 100)
-
         }
-
-
     }
 
     handleInputValue = (inputValue, selectedCountryCode) => {
+
+        localStorage.setItem('inputValue', inputValue);
+        localStorage.setItem('selectedCountryCode', selectedCountryCode);
+
         this.setState({
             selectedCountry: inputValue,
             selectedCountryCode
         })
+
     }
 
     changeButtonStatus = () => {
@@ -103,14 +115,21 @@ class Search extends Component {
     downloadInformationAboutPollution = () => {
 
         const country = this.state.selectedCountryCode
+        let API = ``
 
-        const API = `https://api.openaq.org/v1/measurements?country=${country}`
+        if (country === "DE" || country === "ES") {
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=3500`
+        } else {
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=500`
+        }
+
+
 
         fetch(API)
             .then(response => {
 
                 if (response.ok) {
-                    // console.log(`kod odpowiedzi z serwera ${response.status}`)
+
                     return response
                 }
                 throw Error(response.status)
@@ -120,8 +139,6 @@ class Search extends Component {
             .then(data => {
 
                 let informationAboutPollution = data.results
-
-                // console.log("fetch", informationAboutPollution)
 
                 if (informationAboutPollution.length > 1) {
                     this.setState({
@@ -165,39 +182,16 @@ class Search extends Component {
             }
         }, 2000)
 
-        // console.log("przekazano 100", informationAboutPollution)
-        // console.log("top city", topCityPollutionList)
-        console.log("wynik końcowy", cityPollutionArray)
-
-    }
-
-    downloadInformationAboutCity = () => {
-
-        let data = this.state.topCityPollutionList
-
-        let topCityPollutionList = [...data]
-
-
-
     }
 
     handleButton = () => {
-
-        console.log("wciśnięto button")
 
         this.buttonClicked()
 
         this.changeButtonStatus()
 
-        // setTimeout(() => {
-        //     this.changeButtonStatus2()
-        // }, 2000)
-
         this.downloadInformationAboutPollution()
 
-        // setTimeout(() => {
-        //     this.createCityPollutionArray()
-        // }, 2000)
     }
 
 
@@ -257,7 +251,7 @@ class Search extends Component {
 
                 </div>
 
-                <div className="row mbottom">
+                <div className="row mt-4">
 
                     {show_listOfTheCityPollution && <ListOfTheCityPollution data={this.state.cityPollutionArray} />}
 
