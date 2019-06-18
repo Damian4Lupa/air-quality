@@ -5,10 +5,12 @@ const Footer = () => {
 
         <footer className="navbar navbar-dark bg-primary mt-5">
             <div className="container">
-                <div className="row">
+                <div className="row left">
+                 
                     <div className="col">
-                        <span>© 2019 Copyright by Air quality</span>
+                        <span className="">© 2019 Copyright by Air quality</span>
                     </div>
+                  
                 </div>
 
             </div>

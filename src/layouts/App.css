@@ -80,3 +80,23 @@ p {
 .mbottom {
     margin-bottom: 32rem
 }
+
+.left {
+    margin-left: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.main {
+    background-image: url('../images/background.png');
+    background-repeat: no-repeat;
+    opacity: .95;
+}
+
+input, select, option {
+    opacity: .7;
+}
+
+button {
+    opacity: .9; 
+}

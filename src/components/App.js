@@ -7,12 +7,12 @@ import Information from './Information'
 
 function App() {
   return (
-    <>
+    <div className="main">
       <Navbar />
       <Search />
       <Information />
       <Footer />
-    </>
+    </div>
   );
 }
 

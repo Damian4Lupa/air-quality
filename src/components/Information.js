@@ -8,9 +8,11 @@ const Information = () => {
 
         <div className="container marketing">
 
-            <div className='hr'>
+            {/* <div className='hr'>
                 <span className='hr-title'>Why Is Air Quality Important?</span>
-            </div>
+            </div> */}
+            
+            <h1 className="text-center featurette-divider">Why Is Air Quality Important?</h1>
 
             <div className="row featurette middle">
                 <div className="col-md-7">

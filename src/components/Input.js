@@ -12,12 +12,12 @@ class Input extends Component {
     }
 
 
-    componentDidMount() {
-        let data = localStorage.getItem('InputValue')
-        this.setState({
-            inputValue: data
-        })
-    }
+    // componentDidMount() {
+    //     let data = localStorage.getItem('InputValue')
+    //     this.setState({
+    //         inputValue: data
+    //     })
+    // }
 
     handleChangeInput = event => {
 
