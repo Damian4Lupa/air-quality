@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Input from './Input'
 import ListOfTheCityPollution from './ListOfTheCityPollution'
-import background from '../images/background.png'
 
 class Search extends Component {
 
@@ -14,32 +13,22 @@ class Search extends Component {
         tableSize: 0,
         groupOfCountries: '',
 
-        show_listOfTheCityPollution: false,
+        show_listOfTheCityPollution: true,
         show_LoadingDataButton: false,
         show_searchButton: true,
         buttonClicked: false,
         downloadedData: false,
         dataPollutionReady: false,
-        dataCityReady: false
+        dataCityReady: false,
+        resetState: false
 
     }
 
-    // componentDidMount() {
-
-    //     let InputValue = localStorage.getItem('InputValue')
-    //     let selectedCountryCode = localStorage.getItem('selectedCountryCode')
-
-    //     this.setState({
-    //         selectedCountry: InputValue,
-    //         selectedCountryCode
-    //     })
-    // }
-
     componentDidUpdate(previousProps, previousState) {
 
-        const { informationAboutPollution, dataPollutionReady, downloadedData, selectedCountryCode } = this.state
+        const { informationAboutPollution, dataPollutionReady, downloadedData, resetState } = this.state
 
-        if (previousState.selectedCountry !== '' && this.state.selectedCountry === '') {
+        if (resetState) {
             this.resetState()
         }
 
@@ -68,49 +57,31 @@ class Search extends Component {
         }
 
 
-        if (selectedCountryCode) {
+    }
 
-            const country = this.state.selectedCountryCode
-            let groupOfCountries = ''
-            let tableSize = 0
+    handleResetState = () => {
 
-            if (country === "DE" || country === "ES" || country === "FR" || country === "FI" || country === "IT" || country === "NL" || country === "NO" || country === "PL" || country === "TR" || country === "GB") {
-                groupOfCountries = "A"
-                tableSize = 10
-
-            } else if (country === "AT" || country === "BE" || country === "HR" || country === "CZ" || country === "HU" || country === "IE" || country === "MK" || country === "PT" || country === "CH") {
-                groupOfCountries = "B"
-                tableSize = 5
-
-            } else {
-                tableSize = 1
-            }
-
-            this.setState({
-                groupOfCountries,
-                tableSize
-            })
-
-        }
-
-
-
-
-
-
+        this.setState({
+            resetState: true
+        })
 
     }
 
     handleInputValue = (inputValue, selectedCountryCode) => {
 
-        // localStorage.setItem('inputValue', inputValue);
-        // localStorage.setItem('selectedCountryCode', selectedCountryCode);
-
         this.setState({
             selectedCountry: inputValue,
-            selectedCountryCode
+            selectedCountryCode,
+
         })
 
+    }
+
+    onHandleInputValue2 = (tableSize, groupOfCountries) => {
+        this.setState({
+            groupOfCountries,
+            tableSize,
+        })
     }
 
     changeButtonStatus = () => {
@@ -139,12 +110,18 @@ class Search extends Component {
             selectedCountryCode: '',
             informationAboutPollution: [],
             cityPollutionArray: [],
+            topCityPollutionList: [],
+            tableSize: 0,
+            groupOfCountries: '',
 
-            show_informationAboutPollution: false,
+            show_listOfTheCityPollution: false,
             show_LoadingDataButton: false,
             show_searchButton: true,
             buttonClicked: false,
             downloadedData: false,
+            dataPollutionReady: false,
+            dataCityReady: false,
+            resetState: false
         })
     }
 
@@ -155,16 +132,14 @@ class Search extends Component {
         let API = ``
 
         if (groupOfCountries === "A") {
-            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=1500`
-           
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=3500`
 
         } else if (groupOfCountries === "B") {
             API = `https://api.openaq.org/v1/measurements?country=${country}&limit=500`
-            
 
         } else {
             API = `https://api.openaq.org/v1/measurements?country=${country}`
-            
+
         }
 
         fetch(API)
@@ -239,12 +214,14 @@ class Search extends Component {
 
     render() {
 
-        const { show_LoadingDataButton, show_searchButton, informationAboutPollution, buttonClicked, show_listOfTheCityPollution, tableSize } = this.state
+        const { show_LoadingDataButton, show_searchButton, selectedCountry, selectedCountryCode, show_listOfTheCityPollution, tableSize } = this.state
 
-        // let downloadError = false
-        // if (buttonClicked && informationAboutPollution === []) {
-        //     downloadError = true
-        // }
+        let error1 = false
+        if (selectedCountry !== '' && selectedCountryCode === '') {
+            error1 = true
+        } else {
+            error1 = false
+        }
 
         return (
 
@@ -258,7 +235,11 @@ class Search extends Component {
                 <div className="row justify-content-md-center">
                     <div className="col-5">
 
-                        <Input onHandleInputValue={this.handleInputValue} tableSize={tableSize} />
+                        <Input
+                            onHandleInputValue={this.handleInputValue}
+                            onHandleInputValue2={this.onHandleInputValue2}
+                            handleResetState={this.handleResetState}
+                        />
 
                     </div>
 
@@ -275,7 +256,7 @@ class Search extends Component {
 
 
 
-                        {show_LoadingDataButton && <button class="btn btn-outline-light btn-lg btn-block mt-3" type="button" disabled>
+                        {show_LoadingDataButton && <button className="btn btn-outline-light btn-lg btn-block mt-3" type="button" disabled>
                             <span className="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>
                             <span> Loading data...</span>
 
@@ -288,13 +269,16 @@ class Search extends Component {
 
                 <div className="row justify-content-around">
 
-                    {/* {downloadError && <h5 className="mt-5">We have a server problem, we could not get the value, please try again</h5>} */}
+                    {error1 && <h5 className="mt-5">No data for this country. Please choose other.</h5>}
 
                 </div>
 
                 <div className="row mt-4">
 
-                    {show_listOfTheCityPollution && <ListOfTheCityPollution data={this.state.cityPollutionArray} />}
+                    {show_listOfTheCityPollution && <ListOfTheCityPollution
+                        data={this.state.cityPollutionArray}
+                        tableSize={tableSize}
+                    />}
 
                 </div>
 

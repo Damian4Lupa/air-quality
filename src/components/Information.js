@@ -7,10 +7,6 @@ const Information = () => {
     return (
 
         <div className="container marketing">
-
-            {/* <div className='hr'>
-                <span className='hr-title'>Why Is Air Quality Important?</span>
-            </div> */}
             
             <h1 className="text-center featurette-divider">Why Is Air Quality Important?</h1>
 
@@ -46,13 +42,13 @@ const Information = () => {
                 <div className="col-md-7">
                     <h2 className="featurette-heading">Environmental effects of air pollution. <span className="text-muted"></span></h2>
                     <p className="lead">Too much ozone in the atmosphere can have a detrimental effect on plants and ecosystems. These effects include:</p>
-                    <a className="lead">
+                    <p className="lead">
                         <ul>
                             <li>interfering with the ability of plants to produce and store food, making them more susceptible to certain diseases, insects, other pollutants, competition and harsh weather</li>
                             <li>damage to the leaves of trees and other plants</li>
                             <li>reducing the growth of forests and yields, potentially affecting the diversity of species in ecosystems</li>
                         </ul>
-                    </a>
+                    </p>
                 </div>
                 <div className="col-md-5">
                     <img src={environmental} alt="health" width="600" />

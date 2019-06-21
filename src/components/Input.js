@@ -8,16 +8,21 @@ class Input extends Component {
         inputValue: '',
         selectedCountry: [],
         selectedCountryCode: '',
-        inputSize: 0
+        inputSize: 0,
+        groupOfCountries: '',
+        tableSize: 0
     }
 
-
-    // componentDidMount() {
-    //     let data = localStorage.getItem('InputValue')
-    //     this.setState({
-    //         inputValue: data
-    //     })
-    // }
+    resetInputState = () => {
+        this.setState({
+            inputValue: '',
+            selectedCountry: [],
+            selectedCountryCode: '',
+            inputSize: 0,
+            groupOfCountries: '',
+            tableSize: 0
+        })
+    }
 
     handleChangeInput = event => {
 
@@ -41,23 +46,36 @@ class Input extends Component {
     }
 
     componentDidUpdate(previousProps, previousState) {
-        let inputValue = this.state.inputValue
+
+        const { inputValue, selectedCountryCode } = this.state
         let data = [...countries.countries]
         let selectedCountry = ''
         let inputSize = 0
+        const country = this.state.selectedCountryCode
+        let groupOfCountries = ''
+        let tableSize = 0
+
+        if (previousState.inputValue !== '' && inputValue === '') {
+
+            this.props.handleResetState()
+
+            this.resetInputState();
+        }
 
         if (previousState.inputValue !== this.state.inputValue) {
             selectedCountry = data.filter(item => item.name.toUpperCase().includes(inputValue))
 
             if (selectedCountry.length === 1) {
                 inputSize = 2
+            } else if (selectedCountry.length > 5) {
+                inputSize = 5
             } else {
                 inputSize = selectedCountry.length
             }
 
             this.setState({
                 selectedCountry,
-                inputSize
+                inputSize,
             })
         }
 
@@ -68,6 +86,30 @@ class Input extends Component {
                 selectedCountryCode: '',
                 inputSize: 0
             })
+        }
+
+        if (previousState.selectedCountryCode !== selectedCountryCode) {
+
+            if (country === "DE" || country === "ES" || country === "FR" || country === "FI" || country === "IT" || country === "NL" || country === "NO" || country === "PL" || country === "TR" || country === "GB") {
+                groupOfCountries = "A"
+                tableSize = 10
+
+            } else if (country === "AT" || country === "BE" || country === "HR" || country === "CZ" || country === "HU" || country === "IE" || country === "MK" || country === "PT" || country === "CH") {
+                groupOfCountries = "B"
+                tableSize = 5
+
+            } else {
+                groupOfCountries = "C"
+                tableSize = 1
+            }
+
+            this.setState({
+                groupOfCountries,
+                tableSize
+            })
+
+            this.props.onHandleInputValue2(tableSize, groupOfCountries)
+
         }
     }
 

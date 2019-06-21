@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="row left">
                  
                     <div className="col">
-                        <span className="">© 2019 Copyright by Air quality</span>
+                        <span className="">© 2019 copyright by AirTab</span>
                     </div>
                   
                 </div>

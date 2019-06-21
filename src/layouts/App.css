@@ -93,10 +93,45 @@ p {
     opacity: .95;
 }
 
-input, select, option {
+input {
     opacity: .7;
+    color: black
+}
+
+select,
+option {
+    opacity: .75;
+    color: black
 }
 
 button {
-    opacity: .9; 
+    opacity: .9;
+}
+
+.red {
+    background-color: red;
+    opacity: .65;
+}
+
+.yellow {
+    background-color: yellow;
+    opacity: .65;
+}
+
+.green {
+    background-color: green;
+    opacity: .65;
+}
+
+.navbarTitle {
+    font-family: 'Akronim', cursive;
+    font-size: 40px;
+}
+
+.navbar {
+    padding: 0
+}
+
+.navbar-brand {
+    padding-bottom: 0
 }

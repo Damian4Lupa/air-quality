@@ -4,19 +4,24 @@ import logo from '../images/logo.png'
 const Navbar = () => {
     return (
 
-        <nav className="navbar navbar-dark bg-primary mb-5">
+        <nav className="navbar navbar-dark bg-primary box-shadow mb-5">
             <div className="container">
-                <a className="navbar-brand" href="#">
+                <div className="navbar-brand">
                     <img
                         src={logo}
-                        width="35" height="35"
-                        className="d-inline-block align-top inverted"
+                        width="45" height="45"
+                        className="d-inline-block align-top inverted mt-1"
                         alt="logo"
                     />
-                    <span className="ml-2">Air quality</span>
-            </a>
+                    <span className="navbarTitle ml-2">AirTab</span>
+                </div>
             </div>
         </nav>
+
+
+
+
+
 
     );
 }
