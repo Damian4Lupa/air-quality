@@ -74,7 +74,6 @@ class Table extends Component {
         return color
     }
 
-
     render() {
 
         let table = []

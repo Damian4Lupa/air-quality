@@ -13,7 +13,7 @@ class Search extends Component {
         tableSize: 0,
         groupOfCountries: '',
 
-        show_listOfTheCityPollution: true,
+        show_listOfTheCityPollution: false,
         show_LoadingDataButton: false,
         show_searchButton: true,
         buttonClicked: false,
@@ -21,7 +21,6 @@ class Search extends Component {
         dataPollutionReady: false,
         dataCityReady: false,
         resetState: false
-
     }
 
     componentDidUpdate(previousProps, previousState) {
@@ -30,6 +29,7 @@ class Search extends Component {
 
         if (resetState) {
             this.resetState()
+            this.hideTable()
         }
 
         if (informationAboutPollution.length > 1) {
@@ -55,8 +55,12 @@ class Search extends Component {
                 })
             }, 10)
         }
+    }
 
-
+    hideTable = () => {
+        this.setState({
+            show_listOfTheCityPollution: false
+        })
     }
 
     handleResetState = () => {
@@ -134,10 +138,10 @@ class Search extends Component {
             API = `https://api.openaq.org/v1/measurements?country=${country}&limit=2500`
 
         } else if (groupOfCountries === "B") {
-            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=1000`
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=1500`
 
         } else {
-            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=500`
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=1000`
         }
 
         fetch(API)
@@ -169,7 +173,7 @@ class Search extends Component {
         let data = this.state.informationAboutPollution
         let downloadedData = this.state.downloadedData
         let informationAboutPollution = [...data]
-        let SingleCityInformationAboutPollution = []
+        // let SingleCityInformationAboutPollution = []
         let topCityPollutionList = []
         let cityPollutionArray = []
         let size = this.state.tableSize
@@ -187,29 +191,30 @@ class Search extends Component {
                 uniqueListOfCities.add(citycity[i])
             }
             let newrray = [...uniqueListOfCities].splice(0, size)
-            topCityPollutionList = newrray 
-
-
-            // console.log("top city", topCityPollutionList)
-            // console.log("unique city", newrray)
+            topCityPollutionList = newrray
 
         } else if (topCityPollutionList === []) {
-            topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "co").sort(function (a, b) {
+            topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "no2").sort(function (a, b) {
                 return b.value - a.value;
-            }).slice(0, size + 5).map(item => item.city)
+            }).map(item => item.city)
+
+            let citycity = [...topCityPollutionList]
+            let uniqueListOfCities = new Set();
+            for (let i = 0; i < citycity.length; i++) {
+                uniqueListOfCities.add(citycity[i])
+            }
+            let newrray = [...uniqueListOfCities].splice(0, size)
+            topCityPollutionList = newrray
+
+
         }
 
-
-        //Wyszukuje dla top list city wartości
         for (let i = 0; i < size; i++) {
             let result = informationAboutPollution.filter(item => item.city === topCityPollutionList[i])
             cityPollutionArray.push(result)
         }
 
-        // console.log("top city", topCityPollutionList)
-
-        console.log("pollution array", cityPollutionArray)
-
+        // console.log("pollution array", cityPollutionArray)
 
         setTimeout(() => {
 
@@ -265,10 +270,7 @@ class Search extends Component {
                         />
 
                     </div>
-
-
                     <div className="col-5">
-
 
                         {show_searchButton && <button
                             type="button"
@@ -277,23 +279,17 @@ class Search extends Component {
                         >Search
                         </button>}
 
-
-
                         {show_LoadingDataButton && <button className="btn btn-outline-light btn-lg btn-block mt-3" type="button" disabled>
                             <span className="spinner-border spinner-border-sm mb-1" role="status" aria-hidden="true"></span>
                             <span> Loading data...</span>
 
                         </button>}
 
-
-
                     </div>
                 </div>
 
                 <div className="row justify-content-around">
-
                     {error1 && <h5 className="mt-5">No data for this country. Please choose other.</h5>}
-
                 </div>
 
                 <div className="row mt-4">
@@ -304,8 +300,6 @@ class Search extends Component {
                     />}
 
                 </div>
-
-
             </div>
         );
     }
