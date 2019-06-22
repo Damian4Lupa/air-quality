@@ -57,9 +57,8 @@ class Input extends Component {
 
         if (previousState.inputValue !== '' && inputValue === '') {
 
-            this.props.handleResetState()
-
             this.resetInputState();
+            this.props.handleResetState()
         }
 
         if (previousState.inputValue !== this.state.inputValue) {

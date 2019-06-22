@@ -42,7 +42,7 @@ class Search extends Component {
                 this.setState({
                     show_listOfTheCityPollution: true
                 })
-            }, 100)
+            }, 10)
         }
 
         if (dataPollutionReady) {
@@ -53,7 +53,7 @@ class Search extends Component {
                     dataPollutionReady: false,
                     buttonClicked: false,
                 })
-            }, 100)
+            }, 10)
         }
 
 
@@ -72,7 +72,6 @@ class Search extends Component {
         this.setState({
             selectedCountry: inputValue,
             selectedCountryCode,
-
         })
 
     }
@@ -114,7 +113,7 @@ class Search extends Component {
             tableSize: 0,
             groupOfCountries: '',
 
-            show_listOfTheCityPollution: false,
+            show_listOfTheCityPollution: true,
             show_LoadingDataButton: false,
             show_searchButton: true,
             buttonClicked: false,
@@ -132,14 +131,13 @@ class Search extends Component {
         let API = ``
 
         if (groupOfCountries === "A") {
-            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=3500`
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=2500`
 
         } else if (groupOfCountries === "B") {
-            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=500`
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=1000`
 
         } else {
-            API = `https://api.openaq.org/v1/measurements?country=${country}`
-
+            API = `https://api.openaq.org/v1/measurements?country=${country}&limit=500`
         }
 
         fetch(API)
@@ -169,35 +167,60 @@ class Search extends Component {
     createCityPollutionArray = () => {
 
         let data = this.state.informationAboutPollution
-
+        let downloadedData = this.state.downloadedData
         let informationAboutPollution = [...data]
+        let SingleCityInformationAboutPollution = []
         let topCityPollutionList = []
         let cityPollutionArray = []
+        let size = this.state.tableSize
 
-        if (informationAboutPollution) {
+
+        if (informationAboutPollution && downloadedData) {
+
             topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "so2").sort(function (a, b) {
                 return b.value - a.value;
-            }).slice(0, 10).map(item => item.city)
+            }).map(item => item.city)
+
+            let citycity = [...topCityPollutionList]
+            let uniqueListOfCities = new Set();
+            for (let i = 0; i < citycity.length; i++) {
+                uniqueListOfCities.add(citycity[i])
+            }
+            let newrray = [...uniqueListOfCities].splice(0, size)
+            topCityPollutionList = newrray 
+
+
+            // console.log("top city", topCityPollutionList)
+            // console.log("unique city", newrray)
+
         } else if (topCityPollutionList === []) {
             topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "co").sort(function (a, b) {
                 return b.value - a.value;
-            }).slice(0, 10).map(item => item.city)
+            }).slice(0, size + 5).map(item => item.city)
         }
 
-        for (let i = 0; i < 10; i++) {
+
+        //Wyszukuje dla top list city wartości
+        for (let i = 0; i < size; i++) {
             let result = informationAboutPollution.filter(item => item.city === topCityPollutionList[i])
             cityPollutionArray.push(result)
         }
 
+        // console.log("top city", topCityPollutionList)
+
+        console.log("pollution array", cityPollutionArray)
+
+
         setTimeout(() => {
-            if (this.state.cityPollutionArray.length === 0) {
+
+            if (this.state.cityPollutionArray.length === 0 && this.state.informationAboutPollution.length !== 0) {
                 this.setState({
                     cityPollutionArray,
                     topCityPollutionList,
                     dataPollutionReady: true
                 })
             }
-        }, 2000)
+        }, 500)
 
     }
 

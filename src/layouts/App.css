@@ -35,7 +35,6 @@ footer {
 .hr {
     margin-top: 10rem;
     margin-bottom: 6rem;
-    /* margin: 6rem 0; */
     border: 0;
     border-top: 1.5px solid #eee;
     text-align: center;
@@ -111,6 +110,7 @@ button {
 .red {
     background-color: red;
     opacity: .65;
+    color: white
 }
 
 .yellow {
@@ -121,6 +121,7 @@ button {
 .green {
     background-color: green;
     opacity: .65;
+    color: white
 }
 
 .navbarTitle {
