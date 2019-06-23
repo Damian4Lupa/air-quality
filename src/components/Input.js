@@ -13,7 +13,6 @@ class Input extends Component {
         tableSize: 0
     }
 
-
     componentDidUpdate(previousProps, previousState) {
 
         const { inputValue, selectedCountryCode } = this.state
@@ -59,12 +58,12 @@ class Input extends Component {
 
         if (previousState.selectedCountryCode !== selectedCountryCode) {
 
-            if (country === "DE" || country === "ES" || country === "FR" || country === "PL" || country === "TR" || country === "GB") {
+            if (country === "DE" || country === "ES" || country === "FR" || country === "PL" || country === "GB") {
 
                 groupOfCountries = "A"
                 tableSize = 10
 
-            } else if (country === "AT" || country === "BE" || country === "HR" || country === "CZ" || country === "HU" || country === "IE" || country === "MK" || country === "PT" || country === "CH" || country === "FI" || country === "IT" || country === "NL" || country === "NO" ) {
+            } else if (country === "BE" || country === "HR" || country === "CZ" || country === "HU" || country === "IE" || country === "MK" || country === "PT" || country === "CH" || country === "FI" || country === "NL" || country === "NO" ) {
 
                 groupOfCountries = "B"
                 tableSize = 5
@@ -115,7 +114,6 @@ class Input extends Component {
 
         this.props.onHandleInputValue(inputValue, selectedCountryCode)
     }
-
 
     render() {
 

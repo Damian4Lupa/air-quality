@@ -165,7 +165,6 @@ class Table extends Component {
         return (
             <table className="table table-striped text-center">
                 <thead className="bg-primary text-white">
-
                     <tr>
                         <th scope="col">city</th>
                         <th scope="col">so2</th>
@@ -175,15 +174,11 @@ class Table extends Component {
                         <th scope="col">o3</th>
                         <th scope="col">co</th>
                     </tr>
-
                 </thead>
                 <tbody>
-
                     {row}
-
                 </tbody>
             </table>
-
         );
     }
 }

@@ -16,7 +16,6 @@ const Information = () => {
                     <p className="lead">Air pollution causes many negative health effects. It is associated with the respiratory system, cardiovascular system and premature death.</p>
                     <p className="lead">SHORT-TERM EFFECTS: eye, nose, and throat irritation, upper respiratory infections, headaches, nausea, allergic reactions, worsen asthma and emphysema, aggravate exiting heart disease.</p>
                     <p className="lead">LONG-TERM EFFECTS: chronic respiratory disease, lung cancer, heart disease, damage to lungs, brain, and nerves, birth defects, skin cancer, cataracts.</p>
-
                 </div>
                 <div className="col-md-5">
                     <img src={health} alt="health" width="400" />
@@ -35,7 +34,6 @@ const Information = () => {
                 </div>
             </div>
 
-
             <hr className="featurette-divider" />
 
             <div className="row featurette middle">
@@ -53,8 +51,6 @@ const Information = () => {
                 <div className="col-md-5">
                     <img src={environmental} alt="health" width="600" />
                 </div>
-
-
             </div>
         </div>
 

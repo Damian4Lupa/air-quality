@@ -7,14 +7,11 @@ const ListOfTheCityPollution = (props) => {
     let tableSize = props.tableSize
 
     return (
-
         <div className="container mt-5">
-
             <Table
                 data={cityPollutionArray}
                 tableSize={tableSize}
             />
-
         </div >
     );
 }

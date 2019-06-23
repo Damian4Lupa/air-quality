@@ -27,6 +27,10 @@ class Search extends Component {
 
         const { informationAboutPollution, dataPollutionReady, downloadedData, resetState } = this.state
 
+        if (previousState.selectedCountry !== this.state.selectedCountry) {
+            this.resetState2()
+        }
+
         if (resetState) {
             this.resetState()
             this.hideTable()
@@ -128,6 +132,15 @@ class Search extends Component {
         })
     }
 
+    resetState2 = () => {
+        this.setState({
+            informationAboutPollution: [],
+            cityPollutionArray: [],
+            topCityPollutionList: [],
+            show_listOfTheCityPollution: false,
+        })
+    }
+
     downloadInformationAboutPollution = () => {
 
         const country = this.state.selectedCountryCode
@@ -171,9 +184,9 @@ class Search extends Component {
     createCityPollutionArray = () => {
 
         let data = this.state.informationAboutPollution
+        let selectedCountryCode = this.state.selectedCountryCode
         let downloadedData = this.state.downloadedData
         let informationAboutPollution = [...data]
-        // let SingleCityInformationAboutPollution = []
         let topCityPollutionList = []
         let cityPollutionArray = []
         let size = this.state.tableSize
@@ -193,8 +206,9 @@ class Search extends Component {
             let newrray = [...uniqueListOfCities].splice(0, size)
             topCityPollutionList = newrray
 
-        } else if (topCityPollutionList === []) {
-            topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "no2").sort(function (a, b) {
+        }
+        if (selectedCountryCode === "SI" || selectedCountryCode === "HR" || selectedCountryCode === "IE") {
+            topCityPollutionList = informationAboutPollution.filter(item => item.parameter === "pm10").sort(function (a, b) {
                 return b.value - a.value;
             }).map(item => item.city)
 
@@ -238,7 +252,6 @@ class Search extends Component {
         this.downloadInformationAboutPollution()
 
     }
-
 
     render() {
 
