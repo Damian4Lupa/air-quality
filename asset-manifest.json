@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/air-quality/static/css/main.d9553985.chunk.css",
+    "main.js": "/air-quality/static/js/main.018a8806.chunk.js",
+    "main.js.map": "/air-quality/static/js/main.018a8806.chunk.js.map",
+    "runtime~main.js": "/air-quality/static/js/runtime~main.5984ee94.js",
+    "runtime~main.js.map": "/air-quality/static/js/runtime~main.5984ee94.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/air-quality/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.e87c2992.chunk.js": "/air-quality/static/js/2.e87c2992.chunk.js",
+    "static/js/2.e87c2992.chunk.js.map": "/air-quality/static/js/2.e87c2992.chunk.js.map",
+    "index.html": "/air-quality/index.html",
+    "precache-manifest.e3a9fb3b4acc80c9c403ce252404fb93.js": "/air-quality/precache-manifest.e3a9fb3b4acc80c9c403ce252404fb93.js",
+    "service-worker.js": "/air-quality/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/air-quality/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.d9553985.chunk.css.map": "/air-quality/static/css/main.d9553985.chunk.css.map",
+    "static/media/App.css": "/air-quality/static/media/background.5199c3b0.png",
+    "static/media/economic.png": "/air-quality/static/media/economic.05ed9839.png",
+    "static/media/environmental.png": "/air-quality/static/media/environmental.882b8f4c.png",
+    "static/media/health.png": "/air-quality/static/media/health.dcdd071c.png",
+    "static/media/logo.png": "/air-quality/static/media/logo.f9d3ec8a.png"
+  }
+}
