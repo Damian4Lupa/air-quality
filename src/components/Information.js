@@ -49,7 +49,7 @@ const Information = () => {
                     </p>
                 </div>
                 <div className="col-md-5">
-                    <img src={environmental} alt="health" width="600" />
+                    <img src={environmental} className="mobile" alt="health" width="600" />
                 </div>
             </div>
         </div>
