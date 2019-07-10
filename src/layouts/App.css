@@ -9,6 +9,17 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.mobile {
+    max-width: 150%;
+    margin-left: -2vw;
+    height: auto;  
+}
+
 .inverted {
     filter: invert(100%)
 }
@@ -88,6 +99,7 @@ p {
 
 .main {
     background-image: url('../images/background.png');
+    /* background-size: contain; */
     background-repeat: no-repeat;
     opacity: .95;
 }
