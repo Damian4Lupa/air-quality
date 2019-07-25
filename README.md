@@ -1,7 +1,9 @@
 
 # AirTab
 
-The application collects data on air quality from https://docs.openaq.org/, organizes and displays in the application.
+The application collects data on air quality on a selected European country. Retrieves information about cities in a given country (between 1000 and 2500 results), segregates data and displays the most polluted.
+
+The application uses the https://docs.openaq.org API
 
 ### `npm start`
 
