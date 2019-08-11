@@ -8,7 +8,7 @@ const Information = () => {
 
         <div className="container marketing">
             
-            <h1 className="text-center featurette-divider">Why Is Air Quality Important?</h1>
+            <h1 className="text-center featurette-divider">Why air quality is important?</h1>
 
             <div className="row featurette middle">
                 <div className="col-md-7">
@@ -27,7 +27,7 @@ const Information = () => {
             <div className="row featurette middle">
                 <div className="col-md-7 order-md-2">
                     <h2 className="featurette-heading">The economic effects of air pollution <span className="text-muted"></span></h2>
-                    <p className="lead">Air pollution has a negative impact on human health, it also affects our economy by ill people, absenteeism at work and school, and expenses on medicines. Agricultural crops, crops and forests are damaged, which results in a loss of income for these sectors of the economy and an increase in prices for consumers. Air pollution reduces visibility and even disrupts air transport. Air pollution can also damage buildings.</p>
+                    <p className="lead">Air pollution has a negative impact on human health, it also affects our economy by illness of people, absenteeism at work and school, and expenses on medicines. Agricultural crops, crops and forests are damaged, which results in a loss of income for these sectors of the economy and an increase in prices for consumers. Air pollution reduces visibility and even disrupts air transport. Air pollution can also damage buildings.</p>
                 </div>
                 <div className="col-md-5 order-md-1">
                     <img src={economic} alt="health" width="400" />
