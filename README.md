@@ -5,6 +5,10 @@ The application collects data on air quality on a selected European country. Ret
 
 The application uses the https://docs.openaq.org API
 
+### `npm install`
+
+Download all packages needed to run the project.
+
 ### `npm start`
 
 Runs the app in the development mode.<br>
