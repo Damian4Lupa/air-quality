@@ -1,5 +1,8 @@
 body {
     background-color: #f8f9fa;
+    background-image: url('../images/background.png');
+    background-repeat: no-repeat;
+    opacity: .95;
 }
 
 html {
@@ -17,7 +20,7 @@ img {
 .mobile {
     max-width: 150%;
     margin-left: -2vw;
-    height: auto;  
+    height: auto;
 }
 
 .inverted {
@@ -95,13 +98,6 @@ p {
     margin-left: 40%;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.main {
-    background-image: url('../images/background.png');
-    /* background-size: contain; */
-    background-repeat: no-repeat;
-    opacity: .95;
 }
 
 input {
