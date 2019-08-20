@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "61b183b45e3b4c84ccf5abf078fbc8b1",
+    "revision": "31bf543533e8d0e3e8da1a3971768871",
     "url": "/air-quality/index.html"
   },
   {
-    "revision": "2f7c7df2ae4ee3adaeb6",
+    "revision": "c9d1ac88e5110d14ab0a",
     "url": "/air-quality/static/css/2.22a7d4ef.chunk.css"
   },
   {
-    "revision": "bad7fbab6b992b872534",
-    "url": "/air-quality/static/css/main.876632e4.chunk.css"
+    "revision": "d3a170940a1a9afd3ecc",
+    "url": "/air-quality/static/css/main.59690590.chunk.css"
   },
   {
-    "revision": "2f7c7df2ae4ee3adaeb6",
-    "url": "/air-quality/static/js/2.e87c2992.chunk.js"
+    "revision": "c9d1ac88e5110d14ab0a",
+    "url": "/air-quality/static/js/2.2122bba6.chunk.js"
   },
   {
-    "revision": "bad7fbab6b992b872534",
-    "url": "/air-quality/static/js/main.604c73c8.chunk.js"
+    "revision": "d3a170940a1a9afd3ecc",
+    "url": "/air-quality/static/js/main.5f64be90.chunk.js"
   },
   {
     "revision": "3f9210d8381d6773f5aa",
