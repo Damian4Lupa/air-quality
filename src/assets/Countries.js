@@ -1,5 +1,3 @@
-
-
 export const countries = [
     { id: 1, name: "Poland", code: "PL" },
     { id: 2, name: "Germany", code: "DE" },
@@ -44,4 +42,3 @@ export const countries = [
     { id: 41, name: "United Kingdom", code: "GB" },
     { id: 42, name: "Kosovo", code: "XK" }
 ]
-
