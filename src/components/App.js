@@ -1,4 +1,5 @@
 import React from "react";
+import "../layouts/normalize.css";
 import "../layouts/App.css";
 import "../layouts/media.css";
 import Navbar from "./Navbar";
