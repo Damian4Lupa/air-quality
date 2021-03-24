@@ -145,6 +145,16 @@ class Table extends Component {
       }
     }
 
+    const ImgIcon = (props) => (
+      <img
+        src={info}
+        class="info-icon"
+        data-bs-toggle="tooltip"
+        data-bs-placement="top"
+        title={props.title}
+      />
+    );
+
     const row = table.map((table) => (
       <tr>
         <td key={table[0]} scope="row" key={table[0][0]}>
@@ -166,63 +176,27 @@ class Table extends Component {
             <th scope="col">city</th>
             <th scope="col">
               so2
-              <img
-                src={info}
-                class="info-icon"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title="Sulfur dioxide"
-              />
+              <ImgIcon title="Sulfur dioxide" />
             </th>
             <th scope="col">
               no2
-              <img
-                src={info}
-                class="info-icon"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title="Nitrogen dioxide"
-              />
+              <ImgIcon title="Nitrogen dioxide" />
             </th>
             <th scope="col">
               pm25
-              <img
-                src={info}
-                class="info-icon"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title="particulate matter 2,5 μm"
-              />
+              <ImgIcon title="particulate matter 2,5 μm" />
             </th>
             <th scope="col">
               pm10
-              <img
-                src={info}
-                class="info-icon"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title="particulate matter 10 μm"
-              />
+              <ImgIcon title="particulate matter 10 μm" />
             </th>
             <th scope="col">
               o3
-              <img
-                src={info}
-                class="info-icon"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title="Ozone"
-              />
+              <ImgIcon title="Ozone" />
             </th>
             <th scope="col">
               co
-              <img
-                src={info}
-                class="info-icon"
-                data-bs-toggle="tooltip"
-                data-bs-placement="top"
-                title="Carbon monoxide"
-              />
+              <ImgIcon title="Carbon monoxide" />
             </th>
           </tr>
         </thead>
