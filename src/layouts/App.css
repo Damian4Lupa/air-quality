@@ -17,6 +17,18 @@ img {
   height: auto;
 }
 
+.info-icon-container {
+  position: relative;
+}
+
+.info-icon {
+  position: absolute;
+  filter: invert(100%);
+  transform: scale(0.8);
+  margin-left: 0.4vw;
+  margin-bottom: 0.9vh;
+}
+
 .mobile {
   max-width: 150%;
   margin-left: -2vw;

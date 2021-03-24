@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import info from "../images/info.svg";
 
 class Table extends Component {
   changeColorSo2 = (value) => {
@@ -161,14 +162,68 @@ class Table extends Component {
     return (
       <table className="table table-striped text-center">
         <thead className="bg-primary text-white">
-          <tr>
+          <tr class="info-icon-container">
             <th scope="col">city</th>
-            <th scope="col">so2</th>
-            <th scope="col">no2</th>
-            <th scope="col">pm25</th>
-            <th scope="col">pm10</th>
-            <th scope="col">o3</th>
-            <th scope="col">co</th>
+            <th scope="col">
+              so2
+              <img
+                src={info}
+                class="info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Sulfur dioxide"
+              />
+            </th>
+            <th scope="col">
+              no2
+              <img
+                src={info}
+                class="info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Nitrogen dioxide"
+              />
+            </th>
+            <th scope="col">
+              pm25
+              <img
+                src={info}
+                class="info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="particulate matter 2,5 μm"
+              />
+            </th>
+            <th scope="col">
+              pm10
+              <img
+                src={info}
+                class="info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="particulate matter 10 μm"
+              />
+            </th>
+            <th scope="col">
+              o3
+              <img
+                src={info}
+                class="info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Ozone"
+              />
+            </th>
+            <th scope="col">
+              co
+              <img
+                src={info}
+                class="info-icon"
+                data-bs-toggle="tooltip"
+                data-bs-placement="top"
+                title="Carbon monoxide"
+              />
+            </th>
           </tr>
         </thead>
         <tbody>{row}</tbody>
