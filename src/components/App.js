@@ -3,9 +3,9 @@ import "../layouts/normalize.css";
 import "../layouts/App.css";
 import "../layouts/media.css";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
 import Search from "./Search";
 import Information from "./Information";
+import Footer from "./Footer";
 
 function App() {
   return (

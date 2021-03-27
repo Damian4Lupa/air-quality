@@ -1,8 +1,5 @@
 body {
-  background-color: #f8f9fa;
-  background-image: url("../images/background.png");
-  background-repeat: no-repeat;
-  opacity: 0.95;
+  background-color: #ffffff;
 }
 
 html {
@@ -10,6 +7,12 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+}
+
+.main {
+  background-image: url("../images/background-1500.jpg");
+  background-repeat: no-repeat;
+  opacity: 0.95;
 }
 
 img {
@@ -27,6 +30,10 @@ img {
   transform: scale(0.8);
   margin-left: 0.4vw;
   margin-bottom: 0.9vh;
+}
+
+.info-icon:hover {
+  filter: invert(85%);
 }
 
 .mobile {
@@ -155,4 +162,22 @@ button {
 
 .navbar-brand {
   padding-bottom: 0;
+}
+
+@media (min-width: 1440px) {
+  .main {
+    background-image: url("../images/background-1500.jpg");
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    background-image: url("../images/background-1000.jpg");
+  }
+}
+
+@media (max-width: 360px) {
+  .main {
+    background-image: url("../images/background-500.jpg");
+  }
 }
