@@ -13,8 +13,9 @@ class Search extends Component {
     groupOfCountries: "",
 
     show_listOfTheCityPollution: false,
+    show_searchButtonDisabled: true,
     show_LoadingDataButton: false,
-    show_searchButton: true,
+    show_searchButton: false,
     buttonClicked: false,
     downloadedData: false,
     dataPollutionReady: false,
@@ -28,7 +29,30 @@ class Search extends Component {
       dataPollutionReady,
       downloadedData,
       resetState,
+      selectedCountry,
+      selectedCountryCode,
     } = this.state;
+
+    if (
+      selectedCountry != "" &&
+      previousState.selectedCountryCode != this.state.selectedCountryCode
+    ) {
+      this.setState({
+        show_searchButtonDisabled: false,
+        show_searchButton: true,
+      });
+    }
+
+    if (
+      selectedCountry === "" &&
+      selectedCountryCode === "" &&
+      previousState.selectedCountry != ""
+    ) {
+      this.setState({
+        show_searchButtonDisabled: true,
+        show_searchButton: false,
+      });
+    }
 
     if (previousState.selectedCountry !== this.state.selectedCountry) {
       this.resetState2();
@@ -257,24 +281,27 @@ class Search extends Component {
     const {
       show_LoadingDataButton,
       show_searchButton,
+      show_searchButtonDisabled,
       selectedCountry,
       selectedCountryCode,
       show_listOfTheCityPollution,
       tableSize,
     } = this.state;
 
-    let error1 = false;
+    let show_noCountryInfo = false;
     if (selectedCountry !== "" && selectedCountryCode === "") {
-      error1 = true;
+      show_noCountryInfo = true;
     } else {
-      error1 = false;
+      show_noCountryInfo = false;
     }
 
     return (
       <div className="container">
         <div className="row justify-content-around">
           <div className="col-10">
-            <h2 className="mt-5 mb-4">Check the air quality in Europe</h2>
+            <h2 className="mt-5 mb-4 text-center">
+              Check the air quality in Europe
+            </h2>
           </div>
         </div>
 
@@ -292,6 +319,16 @@ class Search extends Component {
                 type="button"
                 className="btn btn-outline-light btn-lg btn-block mt-3"
                 onClick={this.handleButton}
+              >
+                Search
+              </button>
+            )}
+
+            {show_searchButtonDisabled && (
+              <button
+                type="button"
+                className="btn btn-outline-light btn-lg btn-block mt-3"
+                disabled
               >
                 Search
               </button>
@@ -315,7 +352,7 @@ class Search extends Component {
         </div>
 
         <div className="row justify-content-around">
-          {error1 && (
+          {show_noCountryInfo && (
             <h5 className="mt-5">
               No data for this country. Please choose other.
             </h5>
