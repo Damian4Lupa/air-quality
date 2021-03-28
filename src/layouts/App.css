@@ -12,6 +12,7 @@ html {
 .main {
   background-image: url("../images/background-1500.jpg");
   background-repeat: no-repeat;
+  background-size: 100%;
   opacity: 0.95;
 }
 
@@ -162,22 +163,4 @@ button {
 
 .navbar-brand {
   padding-bottom: 0;
-}
-
-@media (min-width: 1440px) {
-  .main {
-    background-image: url("../images/background-1500.jpg");
-  }
-}
-
-@media (max-width: 768px) {
-  .main {
-    background-image: url("../images/background-1000.jpg");
-  }
-}
-
-@media (max-width: 360px) {
-  .main {
-    background-image: url("../images/background-500.jpg");
-  }
 }
