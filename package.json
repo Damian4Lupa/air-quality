@@ -1,7 +1,7 @@
 {
   "homepage": "https://damian4lupa.github.io/air-quality/",
   "name": "air-quality",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
@@ -28,9 +28,9 @@
       "not op_mini all"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 2 chrome version",
+      "last 2 firefox version",
+      "last 2 safari version"
     ]
   }
 }

@@ -211,7 +211,7 @@ class Search extends Component {
 
     if (informationAboutPollution && downloadedData) {
       topCityPollutionList = informationAboutPollution
-        .filter((item) => item.parameter === "so2")
+        .filter((item) => item.parameter === "no2")
         .sort(function (a, b) {
           return b.value - a.value;
         })
@@ -252,8 +252,6 @@ class Search extends Component {
       );
       cityPollutionArray.push(result);
     }
-
-    // console.log("pollution array", cityPollutionArray)
 
     setTimeout(() => {
       if (

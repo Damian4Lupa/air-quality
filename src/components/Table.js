@@ -148,16 +148,17 @@ class Table extends Component {
     const ImgIcon = (props) => (
       <img
         src={info}
-        class="info-icon"
+        key={props.title}
+        title={props.title}
+        className="info-icon"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
-        title={props.title}
       />
     );
 
     const row = table.map((table) => (
       <tr>
-        <td key={table[0]} scope="row" key={table[0][0]}>
+        <td key={table[0]} scope="row">
           {table[0]}
         </td>
         <td className={this.changeColorSo2(table[1])}>{table[1]}</td>
@@ -172,15 +173,15 @@ class Table extends Component {
     return (
       <table className="table table-striped text-center">
         <thead className="bg-primary text-white">
-          <tr class="info-icon-container">
+          <tr className="info-icon-container">
             <th scope="col">city</th>
             <th scope="col">
               so2
-              <ImgIcon title="Sulfur dioxide" />
+              <ImgIcon title="sulfur dioxide" />
             </th>
             <th scope="col">
               no2
-              <ImgIcon title="Nitrogen dioxide" />
+              <ImgIcon title="nitrogen dioxide" />
             </th>
             <th scope="col">
               pm25
@@ -192,11 +193,11 @@ class Table extends Component {
             </th>
             <th scope="col">
               o3
-              <ImgIcon title="Ozone" />
+              <ImgIcon title="ozone" />
             </th>
             <th scope="col">
               co
-              <ImgIcon title="Carbon monoxide" />
+              <ImgIcon title="carbon monoxide" />
             </th>
           </tr>
         </thead>
