@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/air-quality/static/css/main.59690590.chunk.css",
-    "main.js": "/air-quality/static/js/main.5f64be90.chunk.js",
-    "main.js.map": "/air-quality/static/js/main.5f64be90.chunk.js.map",
+    "main.css": "/air-quality/static/css/main.6549f003.chunk.css",
+    "main.js": "/air-quality/static/js/main.5559fd3c.chunk.js",
+    "main.js.map": "/air-quality/static/js/main.5559fd3c.chunk.js.map",
     "runtime~main.js": "/air-quality/static/js/runtime~main.5984ee94.js",
     "runtime~main.js.map": "/air-quality/static/js/runtime~main.5984ee94.js.map",
     "static/css/2.22a7d4ef.chunk.css": "/air-quality/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.2122bba6.chunk.js": "/air-quality/static/js/2.2122bba6.chunk.js",
-    "static/js/2.2122bba6.chunk.js.map": "/air-quality/static/js/2.2122bba6.chunk.js.map",
+    "static/js/2.2dabdcb0.chunk.js": "/air-quality/static/js/2.2dabdcb0.chunk.js",
+    "static/js/2.2dabdcb0.chunk.js.map": "/air-quality/static/js/2.2dabdcb0.chunk.js.map",
     "index.html": "/air-quality/index.html",
-    "precache-manifest.76f1164976a7283d02369add9e914779.js": "/air-quality/precache-manifest.76f1164976a7283d02369add9e914779.js",
+    "precache-manifest.b928d419e57aac504a070f6aad3582ca.js": "/air-quality/precache-manifest.b928d419e57aac504a070f6aad3582ca.js",
     "service-worker.js": "/air-quality/service-worker.js",
     "static/css/2.22a7d4ef.chunk.css.map": "/air-quality/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.59690590.chunk.css.map": "/air-quality/static/css/main.59690590.chunk.css.map",
-    "static/media/App.css": "/air-quality/static/media/background.5199c3b0.png",
+    "static/css/main.6549f003.chunk.css.map": "/air-quality/static/css/main.6549f003.chunk.css.map",
+    "static/media/App.css": "/air-quality/static/media/background-500.71f864d0.jpg",
     "static/media/economic.png": "/air-quality/static/media/economic.05ed9839.png",
     "static/media/environmental.png": "/air-quality/static/media/environmental.882b8f4c.png",
     "static/media/health.png": "/air-quality/static/media/health.dcdd071c.png",
+    "static/media/info.svg": "/air-quality/static/media/info.607344da.svg",
     "static/media/logo.png": "/air-quality/static/media/logo.f9d3ec8a.png"
   }
 }
